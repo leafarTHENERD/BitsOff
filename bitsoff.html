@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>BITS OFF</title>
+    </head>
+    <style>
+    .zero{
+        background-color: black;
+    }
+    .game{
+        width:10%;
+    }
+    td{
+        padding:0px;
+
+    }
+    table{
+        background-color:rgb(240,240,240);
+    }
+    </style>
+    <script type="text/javascript">
+        var level = 0;
+        var problems = [[4,8,9,14],
+            [15,19,20,21,23,24],
+            [0,1,3,4,6,7,8,11,12,13,17],
+            [1,5,6,11,12,13,15,16,21],
+            [0,4,6,8,11,13]];
+        var atual = []
+        var h = 5, w = 5;
+        var table_zero = '', table_one = '';
+        
+        function figure_dead(cood, h, w){
+            var array=[];
+            for(i = 0; i < h*w; i++)
+                array[i]  = (cood.indexOf(i) == -1) ? 1 : 0;
+            return array;
+        }
+        function figure_table(array, h, w){
+            var table = '<table>';
+            for(i = 0; i < h; i++){
+                table += '<tr>';
+                    for(j = 0; j < w; j++){
+                    table += '<td ';
+                    if(array[i*(h-1)+j] == 1) table += 'class=\'zero\' ';
+                    table += '>&nbsp;</td>';
+                }
+                table += '</tr>';
+            }
+            table += '</table>';
+            return table;
+        }
+
+        function setup(){
+            var zero = [4,7], one = [0,2,5,6,8];
+            var h = 4, w = 3;
+            var array_zero = figure_dead(zero, h, w);
+            var array_one = figure_dead(one, h, w);
+            table_zero = figure_table(array_zero, h, w);
+            table_one = figure_table(array_one, h, w);
+        }
+
+        function construct(){
+            if (level >= problems.length){window.alert("You Passed All Levels!!!");return;}
+            atual = [];
+            for(var i = 0; i < h; i++)
+                for(var j = 0; j < w; j++){
+                    if(problems[level].indexOf(5*i+j) != -1) atual.push(1);
+                    else atual.push(0);
+                }
+            draw();
+        }
+        function verify(){
+            for(var i = 0; i < h; i++)
+                for(var j = 0; j < w; j++)
+                    if(atual[5*i+j] == 1) return;
+            level+=1;
+            construct();
+        }
+        function draw(){
+            var str="<table border=\"1\" class=\"game\">";
+            for(var i = 0; i < h; i++){
+                str+="<tr>";
+                for(var j = 0; j < w; j++){
+                    str+=("<td onclick=clicked("+i+","+j+")>");
+                    if(atual[5*i+j])
+                        str+=table_one;
+                    else
+                        str+=table_zero;
+                    str+="</td>";
+                }
+
+                str+="</tr>";
+            }
+            str+="</table>";
+            str+="<br/>Level : "+(level+1)+"<br/>";
+            document.body.innerHTML=str;
+            verify();
+        }
+
+        function clicked(y,x){
+            var cima = 5*(y-1)+x;
+            var baixo = 5*(y+1)+x;
+            var direita = 5*y+x+1;
+            var esquerda = 5*y+x-1;
+            if(cima >= 0) atual[cima] = +(!atual[cima]);
+            if(baixo < atual.length) atual[baixo] = +(!atual[baixo]);
+            if(direita%w != 0) atual[direita] = +(!atual[direita]);
+            if(x != 0) atual[esquerda] = +(!atual[esquerda]);
+            atual[5*y+x] = +(!atual[5*y+x]);
+            draw();
+        }       
+
+        function main(){
+            setup();
+            construct();
+        }
+    </script>
+    <body onload="main()">
+    </body>
+</html>

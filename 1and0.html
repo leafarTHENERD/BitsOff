@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>1 and O</title>
+    <style>
+    .zero{
+        background-color: black;
+    }        
+    </style>
+
+    <script>
+      function figure_dead(cood, h, w){
+        var array=[];
+        for(i = 0; i < h*w; i++)
+          array[i]  = (cood.indexOf(i) == -1) ? 1 : 0;
+        return array;
+      }
+      function figure_table(array, h, w){
+        var table = '<table>';
+        for(i = 0; i < h; i++){
+          table += '<tr>';
+          for(j = 0; j < w; j++){
+            table += '<td ';
+            if(array[i*(h-1)+j] == 1) table += 'class=\'zero\' ';
+            table += '>&nbsp;</td>';
+          }
+          table += '</tr>';
+        }
+        table += '</table>';
+        return table;
+      }
+
+      function main(){
+        var zero = [4,7], one = [0,2,5,6,8];
+        var h = 4, w = 3;
+        var array_zero = figure_dead(zero, h, w);
+        var array_one = figure_dead(one, h, w);
+        var table_zero = figure_table(array_zero, h, w);
+        var table_one = figure_table(array_one, h, w);
+        
+        document.body.innerHTML += table_zero;
+        document.body.innerHTML += '<br>';
+        document.body.innerHTML += table_one;
+        
+      }
+    </script>
+  </head>
+  <body onload="main()">
+    
+  </body>
+</html>
