@@ -62,7 +62,6 @@ function draw(problem, w, h){
 }
 
 function click(x, y, problem, w){
-    window.alert(problem);
     var up = x + (y-1)*w;
     var down = x + (y+1)*w;
     var right = (x+1) + y*w;
