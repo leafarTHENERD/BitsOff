@@ -47,7 +47,7 @@ function draw(problem, w, h){
     for(var i = 0; i < h; i++){
         str+="<tr>";
         for(var j = 0; j < w; j++){
-            str+=("<td onclick=clicked("+i+","+j+", ["+problem+"], "+w+")>");
+            str+=("<td onclick=\"clicked("+j+","+i+", ["+problem+"], "+w+")\">");
             if(problem[w*i+j])
                 str+=table_one;
             else
@@ -81,7 +81,6 @@ function click(x, y, problem, w){
 }
 
 function clicked(x, y, problem, w){
-    window.alert(problem);
     problem = click(x, y, problem, w);
     draw(problem, height, width);
 }       
