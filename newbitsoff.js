@@ -45,7 +45,7 @@ window.onload = function(){
 
     var bitWidth = bit.getWidth(),
         bitHeight = bit.getHeight(),
-        bits = [];
+        bits = bitMatrix.create(5, 5, context);
 
     var problem = problem_generator(seed_generator(5,5));
 
@@ -59,15 +59,33 @@ window.onload = function(){
                   ];
     */
 
+    var i, j;
+/*
+    for (i = 0; i < 5; i++) {
+        bits[i] = new Array(5);
+    }
+    for(i = 0; i < 5; i++)
+        for(j = 0; j < 5; j++)
+            bits[i][j] = null;
 
-    for (var i = 0; i < 5; i++) {
-        for (var j = 0; j < 5; j++)
-            bits.push(bit.create(10*i + i*bitWidth, 10*j + j*bitHeight, problem[i][j]));
+*/
+    for (i = 0; i < 5; i++) {
+        for (j = 0; j < 5; j++)
+            //bits[i][j] = bit.create(10*i + i*bitWidth, 10*j + j*bitHeight, problem[i][j]);
+            bits.setBit(i, j, bit.create(10*i + i*bitWidth, 10*j + j*bitHeight, problem[i][j]));
+    }
+/*
+    for (i = 0; i < 5; i++) {
+        for (j = 0; j < 5; j++)
+            bits[i][j].draw(context);
     }
 
-    for (var i = 0; i < bits.length; i++) {
-        bits[i].draw(context);
-    }
+*/
+    bits.connectBits();
+    bits.draw();
 
-
+    document.body.addEventListener("click", function(event){
+        bits.click(event.clientX, event.clientY);
+        bits.draw();
+    }, false);
 };
