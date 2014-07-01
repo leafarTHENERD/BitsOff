@@ -49,9 +49,9 @@ var bit = {
 
 	draw: function(ctx){
 		if(this.status)
-			ctx.fillStyle = "#EEE";
-		else
 			ctx.fillStyle = "#000";
+		else
+			ctx.fillStyle = "#EEE";
 		ctx.fillRect(this.position.getX(), this.position.getY(), this.width, this.height);
 	},
 
