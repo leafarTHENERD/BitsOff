@@ -56,44 +56,43 @@ var bitMatrix = {
     },
 
     click: function(x, y){
-        for (var i = 0; i < this.width; i++) 
-            for (var j = 0; j < this.height; j++)
-                if(this.bits[i][j].onIt(x, y)){
-                    this.bits[i][j].changeStatus();
-                    if(this.bits[i][j].up && this.bits[i][j].up.getStatus())
-                        this.sum += 1;
-                    else
-                        if(this.bits[i][j].up)
-                            this.sum -= 1;
+        var j = Math.floor(x/(this.bitPadding+this.bitWidth));
+        var i = Math.floor(y/(this.bitPadding+this.bitHeight));
+        var bit  = this.getBit(i, j);
+        
+        bit.changeStatus();
+        if(bit.up){
+            if(bit.up.getStatus()) this.sum += 1;
+            else this.sum -= 1;
+        }
 
-                    if(this.bits[i][j].down && this.bits[i][j].down.getStatus())
-                        this.sum += 1;
-                    else
-                        if(this.bits[i][j].down)
-                            this.sum -= 1;
-                    if(this.bits[i][j].left && this.bits[i][j].left.getStatus())
-                        this.sum += 1;
-                    else
-                        if(this.bits[i][j].left)
-                            this.sum -= 1;
-                    if(this.bits[i][j].right && this.bits[i][j].right.getStatus())
-                        this.sum += 1;
-                    else
-                        if(this.bits[i][j].right)
-                            this.sum -= 1;
-                    if(this.bits[i][j].getStatus())
-                        this.sum += 1;
-                    else
-                        this.sum -= 1;
-                    return;
-                }
+        if(bit.down){
+            if(bit.down.getStatus()) this.sum += 1;
+            else this.sum -= 1;
+        }
+
+        if(bit.left){
+            if(bit.left.getStatus()) this.sum += 1;
+            else this.sum -= 1;
+        }
+
+        if(bit.right){
+            if(bit.right.getStatus()) this.sum += 1;
+            else this.sum -= 1;
+        }
+
+        if(bit.getStatus())
+            this.sum += 1;
+        else
+            this.sum -= 1;
+
     },
 
     draw: function(){
         for (var i = 0; i < this.width; i++) 
             for (var j = 0; j < this.height; j++)            
                 if(this.bits[i][j])
-                    this.bits[i][j].draw(this.context);
+                    this.bits[i][j].draw(this.bitWidth, this.bitHeight, this.context);
     },
 
     allOff: function(){
