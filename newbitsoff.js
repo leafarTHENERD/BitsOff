@@ -123,11 +123,9 @@ window.onload = function(){
 
     var i, j;
 
-    for (j = 0; j < 5; j++)
-        for (i = 0; i < 5; i++) {
-        
-            
-            bits.setBit(i, j, bit.create(10*j + j*bitHeight,  10*i + i*bitWidth, problem[i][j]));
+    for (i = 0; i < 5; i++)
+        for (j = 0; j < 5; j++) {            
+            bits.setBit(i, j, problem[i][j]);
     }
 
     bits.connectBits();
