@@ -1,7 +1,5 @@
 var bit = {
 	position: null,
-	height: 100,
-	width: 100,
 	status: false,
 	up: null,
 	down: null,
@@ -47,15 +45,11 @@ var bit = {
 		return this.width;
 	},
 
-	draw: function(ctx){
+	draw: function(w, h, ctx){
 		if(this.status)
 			ctx.fillStyle = "#000";
 		else
 			ctx.fillStyle = "#EEE";
-		ctx.fillRect(this.position.getX(), this.position.getY(), this.width, this.height);
+		ctx.fillRect(this.position.getX(), this.position.getY(), w, h);
 	},
-
-	onIt: function(x, y){
-		return (x >= this.position.getX() && x <= this.position.getX() + this.width) && (y >= this.position.getY() && y <= this.position.getY() + this.height);
-	}
 };
