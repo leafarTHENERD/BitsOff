@@ -59,7 +59,6 @@ var bitMatrix = {
     click: function(x, y){
         var j = Math.floor(x/(this.bitPadding+this.bitWidth));
         var i = Math.floor(y/(this.bitPadding+this.bitHeight));
-        console.log(i, j)
         var bit  = this.getBit(i, j);
         
         bit.changeStatus();
