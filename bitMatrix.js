@@ -25,10 +25,11 @@ var bitMatrix = {
         return obj;
     },
 
-    setBit: function(x, y, bit){
+    setBit: function(x, y, status){
+        var b =  bit.create(this.bitPadding*y + y*this.bitWidth,  this.bitPadding*x + x*this.bitHeight, status);
         if(x < this.width && x >= 0 && y < this.height && y >= 0)
-            this.bits[x][y] = bit;
-        if(bit.getStatus())
+            this.bits[x][y] = b;
+        if(b.getStatus())
             this.sum += 1;
     },
 
