@@ -9,12 +9,13 @@ function seed_generator(w, h, level){
 }
 
 function problem_generation(bitMatrix, seed){
+    bitMatrix.zero();
+    bitMatrix.draw();
     for (var i = 0; i < seed.length-1; i+=2){
         var x = parseInt(seed[i], 10);
         var y = parseInt(seed[i+1], 10);
         bitMatrix.click( bitMatrix.bitPadding*y + y*bitMatrix.bitWidth,  bitMatrix.bitPadding*x + x*bitMatrix.bitHeight );
     }
-
 }
 
 function finished(level){
@@ -28,6 +29,7 @@ window.onload = function(){
         height = canvas.height = window.innerHeight;
 
     var bits = bitMatrix.create(5, 5, context),
+        problem_session = [],
         level = 1;
 
     bits.bitWidth = (width - bits.width*bits.bitPadding)/bits.width,
@@ -41,9 +43,7 @@ window.onload = function(){
     }
 
     bits.connectBits();
-    bits.draw();
 
-    var problem_session = [];
     var seed = seed_generator(5,5, level);
     problem_session.push(seed);
     problem_generation(bits, seed);
