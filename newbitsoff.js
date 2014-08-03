@@ -1,5 +1,5 @@
 function seed_generator(w, h, level){
-    var len = 2*level;
+    var len = level;
     var seed = '';
     for(var i = 0; i < len; i++){
         seed += ''+Math.floor(Math.random()*w);
