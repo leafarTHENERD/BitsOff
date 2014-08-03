@@ -40,6 +40,13 @@ var bitMatrix = {
             return null;
     },
 
+    zero: function(){
+        var i, j;
+        for(i = 0; i < this.width; i++)
+            for(j = 0; j < this.height; j++)
+                this.bits[i][j].setStatus(0);
+    },
+
     connectBits: function(){
         var up, down, right, left;
         for (var i = 0; i < this.width; i++) 
