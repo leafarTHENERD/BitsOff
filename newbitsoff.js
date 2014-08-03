@@ -48,17 +48,22 @@ window.onload = function(){
     problem_session.push(seed);
     problem_generation(bits, seed);
 
-    document.body.addEventListener("click", function(event){
-        //if(inGame){
+    document.getElementById("canvas").addEventListener("click", function(event){
         bits.click(event.clientX, event.clientY);
         if(bits.allOff()){
-            //inGame = false;
             finished(level);
             level++;
             seed = seed_generator(5,5,level);
             problem_session.push(seed);
             problem_generation(bits, seed);
         }
-        //}
+    }, false);
+
+    document.getElementById("prev").addEventListener("click", function(event){
+        
+    }, false);
+
+    document.getElementById("next").addEventListener("click", function(event){
+
     }, false);
 };
