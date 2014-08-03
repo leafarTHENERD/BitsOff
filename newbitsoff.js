@@ -24,25 +24,15 @@ function finished(level){
 window.onload = function(){
     var canvas = document.getElementById("canvas"),
         context = canvas.getContext("2d"),
-        width = canvas.width = window.innerWidth,
+        width = canvas.width = window.innerHeight,
         height = canvas.height = window.innerHeight;
 
-    var bitWidth = bit.getWidth(),
-        bitHeight = bit.getHeight(),
-        bits = bitMatrix.create(5, 5, context),
-        level = 1,
-        inGame = true;
+    var bits = bitMatrix.create(5, 5, context),
+        level = 1;
 
-    
-    /*
-    var problem = [
-                    [0,0,0,0,1],
-                    [0,0,0,1,1],
-                    [0,0,0,0,1],
-                    [0,0,0,0,0],
-                    [0,0,0,0,0],
-                  ];
-    */
+    bits.bitWidth = (width - bits.width*bits.bitPadding)/bits.width,
+    bits.bitHeight = (height - bits.height*bits.bitPadding)/bits.height;
+
     var i, j;
 
     for (i = 0; i < 5; i++)
