@@ -1,22 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>New Bits Off</title>
-	<script type="text/javascript" src="vector.js"></script>
-	<script type="text/javascript" src="bit.js"></script>
+    <title>New Bits Off</title>
+    <script type="text/javascript" src="vector.js"></script>
+    <script type="text/javascript" src="bit.js"></script>
     <script type="text/javascript" src="bitMatrix.js"></script>
-	<script type="text/javascript" src="newbitsoff.js"></script>
+    <script type="text/javascript" src="newbitsoff.js"></script>
     <style type="text/css">
         html, body {
             margin: 0px;
         }
 
-        canvas {
-            display: block;
+        #canvas{
+            display: inline-block;
+            float: left;
+        }
+        #controls{
+            display: inline-block;
+            float: right;
+            padding: 10px 10px 10px 10px;
+            background-color: #EEE;
+            width: auto;
+            height: 100%;
+        }
+
+
+        #level{
+            font-size: 10em;
+            text-align: center;
+        }
+
+        button{
+            display: inline-block;
+            padding: 10px 16px;
+            font-size: 18px;
+            line-height: 1.4;
+            font-weight: 400;
+            text-align: center;
+            border: 1px solid transparent;
+            border-radius: 3px;
+        }
+        button:active{
+            border
         }
     </style>
 </head>
 <body>
-	<canvas id="canvas"></canvas>
+    <canvas id="canvas"></canvas>
+    <div id="controls">
+        <div id="level">1</div>
+        <button id="prev">Previous</button>
+        <button id="next">Next</button>
+    </div>
 </body>
 </html>
